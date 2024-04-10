@@ -1,0 +1,10 @@
+.theme_toggler {
+    opacity: 0;
+}
+
+.theme_toggler_label {
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #282c34;
+    padding: 1rem .5rem;
+}
