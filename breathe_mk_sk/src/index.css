@@ -1,9 +1,21 @@
 :root {
-  --green_color: #79B937;
-  --dark_color: #343A40;
-  --grey_color: #525659;
-  --light_color: #CCCECF;
+  --background-color: #CCCECF;
+  --primary-text-color: #343A40;
+  --secondary-color: #525659;
+  --green-color: #79B937;
+  --toggle-bg: #bbef88;
+  --toggle-fg: #79B937;
 }
+
+[data-theme="dark"] {
+  --background-color: #343A40;
+  --primary-text-color: #CCCECF;
+  --secondary-color: #000000;
+  --green-color: #79B937;
+  --toggle-bg: #79B937;
+  --toggle-fg: #bbef88;
+}
+
 
 * {
   margin: 0;

@@ -1,27 +1,21 @@
-import { createContext, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import { ThemeToggler } from "./components/themeToggler/ThemeToggler";
-
-interface ThemeType {
-  theme: string;
-  toggleTheme: () => void;
-}
-
-export const ThemeContext = createContext<ThemeType | null>(null);
+import { Toggle } from "./components/toggle/Toggle";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [isDark, setIsDark] = useState(() => {
+    const storedIsDark = localStorage.getItem("isDark");
+    return storedIsDark ? JSON.parse(storedIsDark) : false;
+  });
 
-  const toggleTheme = () => {
-    setTheme((current) => (current === "light" ? "dark" : "light"));
-  };
+  useEffect(() => {
+    localStorage.setItem("isDark", JSON.stringify(isDark));
+  }, [isDark]);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className="App" id={theme}>
-        <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
-      </div>
-    </ThemeContext.Provider>
+    <div className="App" data-theme={isDark ? "dark" : "light"}>
+      <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
+    </div>
   );
 }
 
