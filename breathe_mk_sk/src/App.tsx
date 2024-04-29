@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Toggle } from "./components/toggle/Toggle";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [isDark, setIsDark] = useState(() => {
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App" data-theme={isDark ? "dark" : "light"}>
       <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
+      <Outlet />
     </div>
   );
 }
