@@ -24,10 +24,11 @@ export const router = createBrowserRouter([
         path: "/company",
         element: <CompanyPage />,
       },
-      // {
-      //   path: "*",
-      //   element: <NotFoundRoute />,
-      // },
+
+      {
+        path: "*",
+        element: <NotFoundRoute />,
+      },
     ],
   },
 ]);

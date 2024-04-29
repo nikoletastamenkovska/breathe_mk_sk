@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Toggle } from "./components/toggle/Toggle";
+import { Toggle } from "./utils/toggle/Toggle";
 import { Outlet } from "react-router-dom";
 
 function App() {
