@@ -1,23 +1,22 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import { Toggle } from "./utils/toggle/Toggle";
+import React from "react";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Outlet } from "react-router-dom";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { useThemeContext } from "./utils/theme/ThemeContextProvider";
 
 function App() {
-  const [isDark, setIsDark] = useState(() => {
-    const storedIsDark = localStorage.getItem("isDark");
-    return storedIsDark ? JSON.parse(storedIsDark) : false;
-  });
-
-  useEffect(() => {
-    localStorage.setItem("isDark", JSON.stringify(isDark));
-  }, [isDark]);
+  const { theme } = useThemeContext();
 
   return (
-    <div className="App" data-theme={isDark ? "dark" : "light"}>
-      <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
-      <Outlet />
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
+        <div className="App">
+          <Navbar />
+          <Outlet />
+        </div>
+      </CssBaseline>
+    </ThemeProvider>
   );
 }
 

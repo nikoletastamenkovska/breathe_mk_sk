@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Paper, Stack } from "@mui/material";
 import { Link, useRouteError } from "react-router-dom";
 
 interface ErrorProps {
@@ -19,20 +19,16 @@ const ErrorPage = () => {
       textAlign="center"
       id="error-page"
     >
-      <div>
-        <h1>Oops!</h1>
-        <p>
+      <Stack spacing={2}>
+        <Box component="h1">Oops!</Box>
+        <Box component="p">
           <i>{error.statusText || error.message}</i>
-        </p>
-        <p>Looks like we've encountered a digital storm..</p>
-        <p>
-          Don't worry, we're{" "}
-          <Link to={"/"} style={{ color: "var(--green-color)" }}>
-            navigating
-          </Link>{" "}
-          through it!
-        </p>
-      </div>
+        </Box>
+        <Box component="p">Looks like we've encountered a digital storm..</Box>
+        <Box component="p">
+          Don't worry, we're <Link to={"/"}>navigating</Link> through it!
+        </Box>
+      </Stack>
     </Box>
   );
 };
