@@ -1,10 +1,27 @@
 import { PaletteMode } from "@mui/material";
-import { grey, teal } from "@mui/material/colors";
 
 const theme = {
   palette: {
     primary: {
-      main: "#343A40",
+      main: "#79B937",
+    },
+    background: {
+      default: "#CCCECF",
+    },
+    divider: "#525659",
+    error: {
+      main: "#f07852",
+    },
+    success: {
+      main: "#79B937",
+    },
+    warning: {
+      main: "#f3f36d",
+    },
+    text: {
+      primary: "#343A40",
+      secondary: "#fff",
+      disabled: "#525659",
     },
   },
 };
@@ -15,26 +32,43 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     ...(mode === "light"
       ? {
           primary: {
-            main: "#343A40",
+            main: "#79B937",
           },
-          divider: teal[200],
+          background: {
+            default: "#CCCECF",
+          },
+          divider: "#525659",
+          error: {
+            main: "#f07852",
+          },
+          success: {
+            main: "#79B937",
+          },
+          warning: {
+            main: "#f3f36d",
+          },
           text: {
-            primary: grey[900],
-            secondary: grey[600],
+            primary: "#343A40",
+            secondary: "#fff",
+            disabled: "#525659",
           },
         }
       : {
           primary: {
             main: "#79B937",
           },
-          divider: teal[700],
+          divider: "#525659",
           background: {
-            default: "#79B937",
-            paper: teal[900],
+            default: "#343A40",
+            paper: "#525659",
           },
           text: {
-            primary: "#fff",
-            secondary: grey[500],
+            primary: "#CCCECF",
+            secondary: "#CCCECF",
+            disabled: "#525659",
+          },
+          warning: {
+            main: "#f3f36d",
           },
         }),
   },

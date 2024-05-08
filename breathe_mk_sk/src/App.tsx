@@ -1,7 +1,5 @@
-import React from "react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import "./App.css";
 import Navbar from "./components/Navbar";
 import { useThemeContext } from "./utils/theme/ThemeContextProvider";
 
