@@ -3,14 +3,14 @@ import App from "../App";
 import HomePage from "../pages/HomePage";
 import SearchPage from "../pages/SearchPage";
 import CompanyPage from "../pages/CompanyPage";
-import ErrorPage from "../pages/ErrorPage";
+import ErrorRoute from "./ErrorRoute";
 import NotFoundRoute from "./NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorRoute />,
     children: [
       {
         path: "",

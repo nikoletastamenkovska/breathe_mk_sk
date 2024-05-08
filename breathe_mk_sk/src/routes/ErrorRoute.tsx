@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Stack } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import { Link, useRouteError } from "react-router-dom";
 
 interface ErrorProps {
@@ -6,7 +6,7 @@ interface ErrorProps {
   message?: string;
 }
 
-const ErrorPage = () => {
+const ErrorRoute = () => {
   const error = useRouteError() as ErrorProps;
   console.error(error);
 
@@ -29,7 +29,7 @@ const ErrorPage = () => {
         id="error-page"
       >
         <Stack spacing={3}>
-          <Box component="h1">Oops!</Box>
+          <h1>Oops!</h1>
           <Box component="p">
             <i>{error.statusText || error.message}</i>
           </Box>
@@ -43,7 +43,7 @@ const ErrorPage = () => {
                 color="error"
                 style={{
                   boxShadow:
-                    "0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)",
+                    "0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.5)",
                 }}
               >
                 navigating
@@ -57,4 +57,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+export default ErrorRoute;

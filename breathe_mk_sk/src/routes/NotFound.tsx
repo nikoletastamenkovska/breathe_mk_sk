@@ -1,4 +1,4 @@
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Box, IconButton, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -22,10 +22,10 @@ const NotFoundRoute = () => {
         className="dark"
         id="error-page"
       >
-        <Stack spacing={2}>
+        <Stack spacing={3}>
           <h1>Oops!</h1>
-          <Box component="p">Lost in the digital maze?</Box>
-          <Box component="p">
+          <h3>Lost in the digital maze?</h3>
+          <h3>
             Let's get you back on track!{" "}
             <Link to={"/"}>
               <IconButton
@@ -33,13 +33,13 @@ const NotFoundRoute = () => {
                 size="large"
                 style={{
                   boxShadow:
-                    "0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)",
+                    "0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.5)",
                 }}
               >
-                <ArrowBackIcon className="link error" fontSize="large" />
+                <KeyboardReturnIcon className="link dark" fontSize="large" />
               </IconButton>
             </Link>
-          </Box>
+          </h3>
         </Stack>
       </Box>
     </Box>
