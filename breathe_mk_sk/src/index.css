@@ -50,3 +50,8 @@ a {
 .dark {
   color: #080808;
 }
+
+::selection {
+  background-color: #79B937;
+  color: #080808;
+}
