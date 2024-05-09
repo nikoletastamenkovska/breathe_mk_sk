@@ -5,6 +5,9 @@ const theme = {
     primary: {
       main: "#79B937",
     },
+    secondary: {
+      main: "#33393f",
+    },
     background: {
       default: "#CCCECF",
     },
@@ -34,6 +37,9 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           primary: {
             main: "#79B937",
           },
+          secondary: {
+            main: "#33393f",
+          },
           background: {
             default: "#CCCECF",
           },
@@ -55,6 +61,9 @@ export const getDesignTokens = (mode: PaletteMode) => ({
         }
       : {
           primary: {
+            main: "#79B937",
+          },
+          secondary: {
             main: "#79B937",
           },
           divider: "#525659",

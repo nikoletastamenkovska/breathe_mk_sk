@@ -1,9 +1,7 @@
-import { Box, Grid } from "@mui/material";
 import React from "react";
+import { Box, Grid } from "@mui/material";
 
-interface HomePageProps {}
-
-const HomePage: React.FC<HomePageProps> = () => {
+const AppGrid = () => {
   return (
     <Box
       sx={{
@@ -13,12 +11,10 @@ const HomePage: React.FC<HomePageProps> = () => {
       }}
     >
       <Grid container sx={{ display: "flex", justifyContent: "center" }}>
-        <Grid item xs={11}>
-          <h1>Home page</h1>
-        </Grid>
+        <Grid item xs={11}></Grid>
       </Grid>
     </Box>
   );
 };
 
-export default HomePage;
+export default AppGrid;

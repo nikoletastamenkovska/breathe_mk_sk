@@ -13,8 +13,8 @@ const NightModeToggle = () => {
         p: 2,
       }}
     >
-      <IconButton onClick={toggleColorMode} color="inherit" size="small">
-        {mode === "dark" ? <Brightness7 color="warning" /> : <Brightness4 />}
+      <IconButton onClick={toggleColorMode} color="secondary" size="small">
+        {mode === "dark" ? <Brightness7 /> : <Brightness4 />}
       </IconButton>
     </Box>
   );
