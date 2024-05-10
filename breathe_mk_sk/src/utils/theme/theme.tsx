@@ -4,14 +4,18 @@ const theme = {
   palette: {
     primary: {
       main: "#79B937",
+      light: "#343A40",
+      dark: "#CCCECF",
+      contrastText: "#343A40",
     },
     secondary: {
       main: "#33393f",
     },
     background: {
       default: "#CCCECF",
+      paper: "#79B937",
     },
-    divider: "#525659",
+    divider: "#343A40",
     error: {
       main: "#f07852",
     },
@@ -36,6 +40,9 @@ export const getDesignTokens = (mode: PaletteMode) => ({
       ? {
           primary: {
             main: "#79B937",
+            light: "#343A40",
+            dark: "#CCCECF",
+            contrastText: "#343A40",
           },
           secondary: {
             main: "#33393f",
@@ -43,7 +50,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
           background: {
             default: "#CCCECF",
           },
-          divider: "#525659",
+          divider: "#343A40",
           error: {
             main: "#f07852",
           },
@@ -62,14 +69,16 @@ export const getDesignTokens = (mode: PaletteMode) => ({
       : {
           primary: {
             main: "#79B937",
+            light: "#CCCECF",
+            dark: "#343A40",
+            contrastText: "#fff",
           },
           secondary: {
-            main: "#79B937",
+            main: "#CCCECF",
           },
-          divider: "#525659",
+          divider: "#CCCECF",
           background: {
             default: "#343A40",
-            paper: "#525659",
           },
           text: {
             primary: "#CCCECF",

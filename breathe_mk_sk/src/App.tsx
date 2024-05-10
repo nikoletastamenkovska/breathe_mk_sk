@@ -1,8 +1,9 @@
-import { Box, Button, CssBaseline, ThemeProvider } from "@mui/material";
-import { Outlet } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import { useThemeContext } from "./utils/theme/ThemeContextProvider";
 import React from "react";
+import { Outlet } from "react-router-dom";
+import { useThemeContext } from "./utils/theme/ThemeContextProvider";
+import Navbar from "./components/Navbar";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import Footer from "./components/Footer";
 
 function App() {
   const { theme } = useThemeContext();
@@ -18,11 +19,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline>
-        <div className="App">
+        <div className="App app-container">
           <Navbar id="navbar" />
-          <Box style={{ marginTop: navbarHeight }}>
+          <Box className="main-content" style={{ marginTop: navbarHeight }}>
             <Outlet />
           </Box>
+          <Footer />
         </div>
       </CssBaseline>
     </ThemeProvider>

@@ -1,10 +1,13 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
-const Logo = () => {
+const Logo: React.FC = () => {
   return (
     <Box>
-      <img src="/logo.png" alt="" />
+      <Link to={"/"}>
+        <img src="/logo.png" alt="" />
+      </Link>
     </Box>
   );
 };

@@ -25,10 +25,10 @@ export const router = createBrowserRouter([
         element: <CompanyPage />,
       },
 
-      {
-        path: "*",
-        element: <NotFoundRoute />,
-      },
+      // {
+      //   path: "*",
+      //   element: <NotFoundRoute />,
+      // },
     ],
   },
 ]);
