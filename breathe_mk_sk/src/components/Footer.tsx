@@ -14,6 +14,7 @@ const Footer: React.FC = () => {
         alignItems: "center",
         width: "100%",
         margin: 0,
+        paddingBlock: 2,
       }}
       className="footer"
     >
@@ -38,7 +39,7 @@ const Footer: React.FC = () => {
               <PersonOutlineOutlinedIcon
                 color="secondary"
                 fontSize="large"
-                sx={{ mt: 1, mr: 3 }}
+                sx={{ mt: 1, mr: 2 }}
               />
             </Link>
           </Grid>

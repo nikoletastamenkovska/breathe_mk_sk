@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { useThemeContext } from "./utils/theme/ThemeContextProvider";
-import Navbar from "./components/Navbar";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {

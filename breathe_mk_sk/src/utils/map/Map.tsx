@@ -5,7 +5,7 @@ const Map = () => {
   return (
     <MapContainer
       className="height-fixer"
-      center={[51.505, -0.09]}
+      center={[42, 21.5]}
       zoom={13}
       scrollWheelZoom={false}
     >

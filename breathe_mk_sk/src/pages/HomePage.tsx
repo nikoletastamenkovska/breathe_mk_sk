@@ -10,6 +10,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       sx={{
         width: "100%",
         margin: 0,
+        p: 0,
       }}
     >
       <Map />
@@ -18,12 +19,9 @@ const HomePage: React.FC<HomePageProps> = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          p: 2,
         }}
       >
-        <Grid item xs={11}>
-          {/* <h1>Home page</h1> */}
-        </Grid>
+        <Grid item xs={11}></Grid>
       </Grid>
     </Box>
   );

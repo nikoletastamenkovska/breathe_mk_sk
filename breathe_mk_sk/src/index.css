@@ -1,41 +1,6 @@
-/* :root {
-  --background-color: #CCCECF;
-  --primary-text-color: #343A40;
-  --secondary-color: #525659;
-  --green-color: #79B937;
-  --toggle-bg: #bbef88;
-  --toggle-fg: #79B937;
-}
-
-[data-theme="dark"] {
-  --background-color: #343A40;
-  --primary-text-color: #CCCECF;
-  --secondary-color: #000000;
-  --green-color: #79B937;
-  --toggle-bg: #79B937;
-  --toggle-fg: #bbef88;
-} */
-
-body,
-html {
-  height: 100%;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-}
-
-.main-content {
-  flex: 1;
-}
-
-#navbar,
-.footer {
-  flex: 0 0 auto;
+:root {
+  --height-header: 98px;
+  --height-footer: 82px;
 }
 
 * {
@@ -75,13 +40,17 @@ a {
   color: #080808;
 }
 
-.outlet {
-  flex: 1;
-  overflow-y: auto;
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 .height-fixer {
-  min-height: 80svh;
+  min-height: calc(100vh - var(--height-header) - var(--height-footer));
 }
 
 .icon-link {
