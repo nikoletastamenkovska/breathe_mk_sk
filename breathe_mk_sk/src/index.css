@@ -40,6 +40,23 @@ a {
   color: #080808;
 }
 
+.leaflet-marker-icon {
+  filter: contrast(150%);
+}
+
+.cluster-icon {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: #79B937;
+  color: #080808;
+  font-weight: 900;
+  font-size: 1.5rem;
+  transform: translate(-25%, -25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .app-container {
   display: flex;
