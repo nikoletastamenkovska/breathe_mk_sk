@@ -3,3 +3,6 @@ export interface MarkerData {
     popUp: string;
     pollution: "low" | "medium" | "high";
 }
+export interface Cluster {
+    getChildCount: () => number;
+}

@@ -1,106 +1,109 @@
+import { Button, Grid } from "@mui/material";
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
+import useGeolocation from "../../hooks/useGeolocation";
 import {
   createCustomClusterIcon,
   greenIcon,
   orangeIcon,
+  personPinIcon,
   redIcon,
 } from "./icons";
-import MarkerClusterGroup from "react-leaflet-cluster";
-import { MarkerData } from "../../types/map";
-import useGeolocation from "../../hooks/useGeolocation";
+import { markers } from "./markers";
 
 const Map: React.FC = () => {
-  const [approved, setApproved] = React.useState(false);
-  const location = useGeolocation();
-  const ZOOM_LEVEL = 50;
-
-  //do I need interactions with the map?! INVESTIGATE THIS!!!
-  const mapRef = React.useRef<L.Map | null>(null);
-
+  const [requestedPermission, setRequestedPermission] = React.useState(false);
+  const location = useGeolocation(requestedPermission);
+  const ZOOM_LEVEL = 13;
   const skopjeCenter: [number, number] = [41.9973, 21.428];
 
-  //markers for polution
-  const markers: MarkerData[] = [
-    {
-      geocode: [42.05573, 21.45104],
-      popUp: "Hello, I am pop up 1",
-      pollution: "low",
-    },
-    {
-      geocode: [41.96339, 21.48624],
-      popUp: "Hello, I am pop up 2",
-      pollution: "medium",
-    },
-    {
-      geocode: [41.98806, 21.45944],
-      popUp: "Hello, I am pop up 3",
-      pollution: "high",
-    },
-    {
-      geocode: [41.9874, 21.44],
-      popUp: "Hello, I am pop up 4",
-      pollution: "high",
-    },
-    {
-      geocode: [41.9745, 21.45644],
-      popUp: "Hello, I am pop up 3",
-      pollution: "medium",
-    },
-  ];
-
-  React.useEffect(() => {
-    if (mapRef.current && location.loaded && !location.error) {
-      mapRef.current.setView(
-        [location.coordinates.lat, location.coordinates.lng],
-        ZOOM_LEVEL
-      );
-    } else mapRef.current?.setView(skopjeCenter, ZOOM_LEVEL);
-  }, [location]);
+  const handlePermissionRequest = () => {
+    setRequestedPermission(true);
+  };
 
   return (
     <>
-      {(location.loaded && !location.error) || !("geolocation" in navigator) ? (
-        <MapContainer
-          className="height-fixer"
-          center={
-            location.loaded && !location.error
-              ? [location.coordinates.lat, location.coordinates.lng]
-              : skopjeCenter
-          }
-          zoom={ZOOM_LEVEL}
-          scrollWheelZoom={true}
-          ref={mapRef}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <MarkerClusterGroup
-            chunkedLoading
-            iconCreateFunction={createCustomClusterIcon}
-          >
-            {markers.map((marker, index) => {
-              return (
+      {location.loaded && !location.error ? (
+        <Grid container sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid item xs={12} sx={{ textAlign: "center" }}>
+            <MapContainer
+              className="height-fixer"
+              center={
+                location.loaded && !location.error
+                  ? [location.coordinates.lat, location.coordinates.lng]
+                  : skopjeCenter
+              }
+              zoom={ZOOM_LEVEL}
+              scrollWheelZoom={true}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {location.loaded && !location.error ? (
                 <Marker
-                  key={index}
-                  position={marker.geocode as [number, number]}
-                  icon={
-                    marker.pollution === "high"
-                      ? redIcon
-                      : marker.pollution === "medium"
-                      ? orangeIcon
-                      : greenIcon
-                  }
+                  position={[
+                    location.coordinates.lat,
+                    location.coordinates.lng,
+                  ]}
+                  icon={personPinIcon}
                 >
-                  <Popup>{marker.popUp}</Popup>
+                  <Popup>You are here</Popup>
                 </Marker>
-              );
-            })}
-          </MarkerClusterGroup>
-        </MapContainer>
+              ) : (
+                ""
+              )}
+              <MarkerClusterGroup
+                chunkedLoading
+                iconCreateFunction={createCustomClusterIcon}
+              >
+                {markers.map((marker, index) => {
+                  return (
+                    <Marker
+                      key={index}
+                      position={marker.geocode as [number, number]}
+                      icon={
+                        marker.pollution === "high"
+                          ? redIcon
+                          : marker.pollution === "medium"
+                          ? orangeIcon
+                          : greenIcon
+                      }
+                    >
+                      <Popup>{marker.popUp}</Popup>
+                    </Marker>
+                  );
+                })}
+              </MarkerClusterGroup>
+            </MapContainer>
+          </Grid>
+        </Grid>
       ) : (
-        <p>Geolocation not available or denied. Showing default location.</p>
+        <>
+          <Grid container sx={{ display: "flex", justifyContent: "center" }}>
+            <Grid item xs={12} sx={{ textAlign: "center" }}>
+              <Button
+                className="default-location-button"
+                onClick={handlePermissionRequest}
+              >
+                Showing default location. Grant Geolocation Permission to see
+                Markers.
+              </Button>
+              <MapContainer
+                className="height-fixer"
+                center={skopjeCenter}
+                zoom={ZOOM_LEVEL}
+                scrollWheelZoom={true}
+              >
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              </MapContainer>
+            </Grid>
+          </Grid>
+        </>
       )}
     </>
   );

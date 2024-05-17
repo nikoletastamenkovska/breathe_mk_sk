@@ -1,4 +1,5 @@
 import L, { DivIcon, point } from "leaflet";
+import { Cluster } from "../../types/map";
 
 export const redIcon = L.icon({
     iconUrl: "/leaflet-icons/leaf-red.png",
@@ -30,7 +31,13 @@ export const greenIcon = L.icon({
     popupAnchor: [-3, 76],
 });
 
-export const createCustomClusterIcon = (cluster: any) => {
+export const personPinIcon = L.icon({
+    className: 'person-pin-icon',
+    iconUrl: '/leaflet-icons/personPinIcon.png',
+    iconSize: [50, 50],
+})
+
+export const createCustomClusterIcon = (cluster: Cluster) => {
     return new DivIcon({
         html: `<div class='cluster-icon'>${cluster.getChildCount()}</div>`,
         className: 'custom-marker-cluster',

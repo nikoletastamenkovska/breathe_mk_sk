@@ -77,6 +77,15 @@ a {
 
 }
 
+.person-pin-icon {
+  opacity: .65;
+}
+
+.default-location-button {
+  animation: pulseAnim 2.5s ease 0s 5 normal forwards;
+  ;
+}
+
 .logo_org {
   margin-left: 5%;
 }
@@ -107,4 +116,19 @@ a {
 ::selection {
   background-color: #79B937;
   color: #080808;
+}
+
+/* animation */
+@keyframes pulseAnim {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
