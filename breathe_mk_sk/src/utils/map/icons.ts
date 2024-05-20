@@ -37,6 +37,12 @@ export const personPinIcon = L.icon({
     iconSize: [50, 50],
 })
 
+export const questionMarkIcon = L.icon({
+    className: 'person-pin-icon',
+    iconUrl: '/leaflet-icons/questionMarkIcon.png',
+    iconSize: [30, 30],
+})
+
 export const createCustomClusterIcon = (cluster: Cluster) => {
     return new DivIcon({
         html: `<div class='cluster-icon'>${cluster.getChildCount()}</div>`,

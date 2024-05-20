@@ -21,7 +21,7 @@ export const useGeolocation = (requestedPermission: boolean) => {
     setLocation((state) => ({
       ...state,
       loaded: true,
-      coordinates: { lat: 0, lng: 0 }, // Default or previous coordinates
+      coordinates: { lat: 0, lng: 0 },
       error: {
         code: error.code,
         message: error.message,
@@ -47,7 +47,6 @@ export const useGeolocation = (requestedPermission: boolean) => {
       }));
     }
 
-    // Return the cleanup function
     return () => {
       if (watchId !== null) {
         navigator.geolocation.clearWatch(watchId);

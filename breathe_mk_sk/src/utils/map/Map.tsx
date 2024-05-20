@@ -8,10 +8,13 @@ import {
   greenIcon,
   orangeIcon,
   personPinIcon,
+  questionMarkIcon,
   redIcon,
 } from "./icons";
 import { markers } from "./markers";
 import { LOCAL_STORAGE_KEY_MAP_PERMISSION } from "../../LS/localStorageKeys";
+import LocationMarker from "./LocationMarker";
+import { Icon } from "leaflet";
 
 const Map: React.FC = () => {
   const [requestedPermission, setRequestedPermission] = React.useState(false);
@@ -44,7 +47,7 @@ const Map: React.FC = () => {
                   : skopjeCenter
               }
               zoom={ZOOM_LEVEL}
-              scrollWheelZoom={true}
+              scrollWheelZoom={false}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -85,6 +88,28 @@ const Map: React.FC = () => {
                   );
                 })}
               </MarkerClusterGroup>
+              <LocationMarker icon={questionMarkIcon} />
+              <Button
+                variant="contained"
+                sx={{
+                  position: "absolute",
+                  bottom: "15px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  zIndex: 1001,
+                  width: "75px",
+                  height: "75px",
+                  borderRadius: "50%",
+                  fontSize: "70px",
+                  padding: 0,
+                  paddingLeft: "5px",
+                  textAlign: "center",
+                  fontWeight: "100",
+                }}
+                onClick={() => console.log("Button clicked")}
+              >
+                +
+              </Button>
             </MapContainer>
           </Grid>
         </Grid>
@@ -103,7 +128,7 @@ const Map: React.FC = () => {
                 className="height-fixer"
                 center={skopjeCenter}
                 zoom={ZOOM_LEVEL}
-                scrollWheelZoom={true}
+                scrollWheelZoom={false}
               >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
