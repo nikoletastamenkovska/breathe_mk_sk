@@ -1,6 +1,6 @@
 :root {
   --height-header: 98px;
-  --height-footer: 82px;
+  --height-footer: 98px;
 }
 
 * {
@@ -94,6 +94,7 @@ a {
   color: #79B937;
   transition: color .8s;
 }
+
 
 @media (max-width: 480px) {
   .logo_org {

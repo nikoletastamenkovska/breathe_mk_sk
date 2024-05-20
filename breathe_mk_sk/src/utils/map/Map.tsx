@@ -3,6 +3,7 @@ import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import useGeolocation from "../../hooks/useGeolocation";
+import { LOCAL_STORAGE_KEY_MAP_PERMISSION } from "../../LS/localStorageKeys";
 import {
   createCustomClusterIcon,
   greenIcon,
@@ -11,15 +12,14 @@ import {
   questionMarkIcon,
   redIcon,
 } from "./icons";
-import { markers } from "./markers";
-import { LOCAL_STORAGE_KEY_MAP_PERMISSION } from "../../LS/localStorageKeys";
 import LocationMarker from "./LocationMarker";
-import { Icon } from "leaflet";
+import { markers } from "./markers";
+import { handlePostButton } from "../helper-functions/helperFunctions";
 
 const Map: React.FC = () => {
   const [requestedPermission, setRequestedPermission] = React.useState(false);
   const location = useGeolocation(requestedPermission);
-  const ZOOM_LEVEL = 16;
+  const ZOOM_LEVEL = 13;
   const skopjeCenter: [number, number] = [41.9973, 21.428];
 
   React.useEffect(() => {
@@ -47,7 +47,7 @@ const Map: React.FC = () => {
                   : skopjeCenter
               }
               zoom={ZOOM_LEVEL}
-              scrollWheelZoom={false}
+              scrollWheelZoom={true}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -89,28 +89,27 @@ const Map: React.FC = () => {
                 })}
               </MarkerClusterGroup>
               <LocationMarker icon={questionMarkIcon} />
-              <Button
-                variant="contained"
-                sx={{
-                  position: "absolute",
-                  bottom: "15px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  zIndex: 1001,
-                  width: "75px",
-                  height: "75px",
-                  borderRadius: "50%",
-                  fontSize: "70px",
-                  padding: 0,
-                  paddingLeft: "5px",
-                  textAlign: "center",
-                  fontWeight: "100",
-                }}
-                onClick={() => console.log("Button clicked")}
-              >
-                +
-              </Button>
             </MapContainer>
+            <Button
+              variant="contained"
+              sx={{
+                position: "absolute",
+                bottom: "25px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "65px",
+                height: "65px",
+                borderRadius: "50%",
+                fontSize: "65px",
+                padding: 0,
+                paddingLeft: "5px",
+                textAlign: "center",
+                fontWeight: "100",
+              }}
+              onClick={handlePostButton}
+            >
+              +
+            </Button>
           </Grid>
         </Grid>
       ) : (
@@ -128,7 +127,7 @@ const Map: React.FC = () => {
                 className="height-fixer"
                 center={skopjeCenter}
                 zoom={ZOOM_LEVEL}
-                scrollWheelZoom={false}
+                scrollWheelZoom={true}
               >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

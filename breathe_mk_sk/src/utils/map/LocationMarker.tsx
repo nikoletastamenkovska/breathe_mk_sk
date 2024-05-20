@@ -11,8 +11,10 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({ icon }) => {
 
   useMapEvents({
     click(e) {
-      setPosition(e.latlng);
-      console.log(position);
+      setPosition((prevPosition) => {
+        console.log(e.latlng);
+        return e.latlng;
+      });
     },
   });
 
