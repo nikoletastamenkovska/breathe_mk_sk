@@ -82,7 +82,7 @@ a {
 }
 
 .default-location-button {
-  animation: pulseAnim 2.5s ease 0s 5 normal forwards;
+  animation: pulseAnim 2.5s ease 0s 10 normal forwards;
   ;
 }
 

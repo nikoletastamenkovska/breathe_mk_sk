@@ -11,20 +11,29 @@ import {
   redIcon,
 } from "./icons";
 import { markers } from "./markers";
+import { LOCAL_STORAGE_KEY_MAP_PERMISSION } from "../../LS/localStorageKeys";
 
 const Map: React.FC = () => {
   const [requestedPermission, setRequestedPermission] = React.useState(false);
   const location = useGeolocation(requestedPermission);
-  const ZOOM_LEVEL = 13;
+  const ZOOM_LEVEL = 16;
   const skopjeCenter: [number, number] = [41.9973, 21.428];
+
+  React.useEffect(() => {
+    const storedPermission = localStorage.getItem(
+      LOCAL_STORAGE_KEY_MAP_PERMISSION
+    );
+    setRequestedPermission(storedPermission === "true");
+  }, []);
 
   const handlePermissionRequest = () => {
     setRequestedPermission(true);
+    localStorage.setItem(LOCAL_STORAGE_KEY_MAP_PERMISSION, "true");
   };
 
   return (
     <>
-      {location.loaded && !location.error ? (
+      {requestedPermission && location.loaded && !location.error ? (
         <Grid container sx={{ display: "flex", justifyContent: "center" }}>
           <Grid item xs={12} sx={{ textAlign: "center" }}>
             <MapContainer
