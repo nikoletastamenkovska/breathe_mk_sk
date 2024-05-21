@@ -82,6 +82,7 @@ a {
 }
 
 .default-location-button {
+  z-index: 10001;
   animation: pulseAnim 2.5s ease 0s 10 normal forwards;
   ;
 }

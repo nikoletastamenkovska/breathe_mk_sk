@@ -15,6 +15,7 @@ import {
 import LocationMarker from "./LocationMarker";
 import { markers } from "./markers";
 import { handlePostButton } from "../helper-functions/helperFunctions";
+import TransitionalDialog from "../../components/TransitionalDialog";
 
 const Map: React.FC = () => {
   const [requestedPermission, setRequestedPermission] = React.useState(false);
@@ -90,7 +91,7 @@ const Map: React.FC = () => {
               </MarkerClusterGroup>
               <LocationMarker icon={questionMarkIcon} />
             </MapContainer>
-            <Button
+            {/* <Button
               variant="contained"
               sx={{
                 position: "absolute",
@@ -109,20 +110,14 @@ const Map: React.FC = () => {
               onClick={handlePostButton}
             >
               +
-            </Button>
+            </Button> */}
+            <TransitionalDialog />
           </Grid>
         </Grid>
       ) : (
         <>
           <Grid container sx={{ display: "flex", justifyContent: "center" }}>
             <Grid item xs={12} sx={{ textAlign: "center" }}>
-              <Button
-                className="default-location-button"
-                onClick={handlePermissionRequest}
-              >
-                Showing default location. Grant Geolocation Permission to see
-                Markers.
-              </Button>
               <MapContainer
                 className="height-fixer"
                 center={skopjeCenter}
@@ -133,7 +128,37 @@ const Map: React.FC = () => {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
+                <LocationMarker icon={questionMarkIcon} />
+                <Button
+                  variant="contained"
+                  className="default-location-button"
+                  onClick={handlePermissionRequest}
+                >
+                  Showing default location. Grant Geolocation Permission to see
+                  your location.
+                </Button>
               </MapContainer>
+              {/* <Button
+                variant="contained"
+                sx={{
+                  position: "absolute",
+                  bottom: "-35px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: "65px",
+                  height: "65px",
+                  borderRadius: "50%",
+                  fontSize: "65px",
+                  padding: 0,
+                  paddingLeft: "5px",
+                  textAlign: "center",
+                  fontWeight: "100",
+                }}
+                onClick={handlePostButton}
+              >
+                +
+              </Button> */}
+              <TransitionalDialog />
             </Grid>
           </Grid>
         </>
