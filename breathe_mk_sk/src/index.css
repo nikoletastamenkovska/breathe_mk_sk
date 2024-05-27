@@ -3,6 +3,11 @@
   --height-footer: 98px;
 }
 
+body {
+  transition: all .5s ease-in-out;
+}
+
+
 * {
   margin: 0;
   padding: 0;

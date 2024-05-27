@@ -1,12 +1,12 @@
-import React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
+import React from "react";
+import { TransitionalDialogProps } from "../types/geolocation";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -17,7 +17,9 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const TransitionalDialog = () => {
+const TransitionalDialog: React.FC<TransitionalDialogProps> = ({
+  position,
+}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -60,15 +62,14 @@ const TransitionalDialog = () => {
         <DialogTitle>
           {"Дали е ова точната локација каде сакате да пријавите загадување?"}
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-          </DialogContentText>
+        <DialogContent color="disabled">
+          {position
+            ? `${position.lat}, ${position.lng}`
+            : "Немате изберена локација."}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button>
+          <Button onClick={handleClose}>x</Button>
+          <Button onClick={handleClose}>Потврди</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

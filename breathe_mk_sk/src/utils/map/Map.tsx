@@ -14,11 +14,12 @@ import {
 } from "./icons";
 import LocationMarker from "./LocationMarker";
 import { markers } from "./markers";
-import { handlePostButton } from "../helper-functions/helperFunctions";
 import TransitionalDialog from "../../components/TransitionalDialog";
+import { LatLng } from "leaflet";
 
 const Map: React.FC = () => {
   const [requestedPermission, setRequestedPermission] = React.useState(false);
+  const [position, setPosition] = React.useState<LatLng | null>(null);
   const location = useGeolocation(requestedPermission);
   const ZOOM_LEVEL = 13;
   const skopjeCenter: [number, number] = [41.9973, 21.428];
@@ -89,29 +90,12 @@ const Map: React.FC = () => {
                   );
                 })}
               </MarkerClusterGroup>
-              <LocationMarker icon={questionMarkIcon} />
+              <LocationMarker
+                icon={questionMarkIcon}
+                setPosition={setPosition}
+              />
             </MapContainer>
-            {/* <Button
-              variant="contained"
-              sx={{
-                position: "absolute",
-                bottom: "25px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "65px",
-                height: "65px",
-                borderRadius: "50%",
-                fontSize: "65px",
-                padding: 0,
-                paddingLeft: "5px",
-                textAlign: "center",
-                fontWeight: "100",
-              }}
-              onClick={handlePostButton}
-            >
-              +
-            </Button> */}
-            <TransitionalDialog />
+            <TransitionalDialog position={position} />
           </Grid>
         </Grid>
       ) : (
@@ -128,7 +112,10 @@ const Map: React.FC = () => {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <LocationMarker icon={questionMarkIcon} />
+                <LocationMarker
+                  icon={questionMarkIcon}
+                  setPosition={setPosition}
+                />
                 <Button
                   variant="contained"
                   className="default-location-button"
@@ -138,27 +125,7 @@ const Map: React.FC = () => {
                   your location.
                 </Button>
               </MapContainer>
-              {/* <Button
-                variant="contained"
-                sx={{
-                  position: "absolute",
-                  bottom: "-35px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: "65px",
-                  height: "65px",
-                  borderRadius: "50%",
-                  fontSize: "65px",
-                  padding: 0,
-                  paddingLeft: "5px",
-                  textAlign: "center",
-                  fontWeight: "100",
-                }}
-                onClick={handlePostButton}
-              >
-                +
-              </Button> */}
-              <TransitionalDialog />
+              <TransitionalDialog position={position} />
             </Grid>
           </Grid>
         </>

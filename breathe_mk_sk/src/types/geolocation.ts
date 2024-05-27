@@ -1,3 +1,5 @@
+import { LatLng } from "leaflet";
+
 export interface Coordinates {
     lat: number;
     lng: number;
@@ -10,4 +12,8 @@ export interface LocationState {
         code: number;
         message: string;
     };
+}
+
+export interface TransitionalDialogProps {
+    position: LatLng | null
 }
