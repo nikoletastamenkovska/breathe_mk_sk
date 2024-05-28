@@ -1,9 +1,10 @@
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { useThemeContext } from "./utils/theme/ThemeContextProvider";
-import { Box, CssBaseline, ThemeProvider } from "@mui/material";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import { useThemeContext } from "./utils/theme/ThemeContextProvider";
+import BreathingLoader from "./components/loader/BreathingLoader";
 
 function App() {
   const { theme } = useThemeContext();
@@ -18,15 +19,14 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline>
-        <div className="App app-container">
-          <Navbar id="navbar" />
-          <Box className="main-content" style={{ marginTop: navbarHeight }}>
-            <Outlet />
-          </Box>
-          <Footer />
-        </div>
-      </CssBaseline>
+      <CssBaseline />
+      <div className="App app-container">
+        <Navbar id="navbar" />
+        <Box className="main-content" style={{ marginTop: navbarHeight }}>
+          <Outlet />
+        </Box>
+        <Footer />
+      </div>
     </ThemeProvider>
   );
 }
