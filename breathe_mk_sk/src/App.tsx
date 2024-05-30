@@ -1,10 +1,9 @@
-import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
+import { useThemeContext } from "./utils/theme/ThemeContextProvider";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { useThemeContext } from "./utils/theme/ThemeContextProvider";
-import BreathingLoader from "./components/loader/BreathingLoader";
 
 function App() {
   const { theme } = useThemeContext();

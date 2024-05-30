@@ -8,9 +8,12 @@
 
 .breathing-loader img {
     width: 200px;
-    animation: breathing 5s ease-out infinite normal;
+    animation: breathing 4s ease-out infinite normal;
 }
 
+.breathing-logo {
+    animation: breathing 5s ease-out infinite normal;
+}
 
 @-webkit-keyframes breathing {
     0% {

@@ -1,9 +1,10 @@
-import { Button, Grid } from "@mui/material";
 import React from "react";
+import { LOCAL_STORAGE_KEY_MAP_PERMISSION } from "../../LS/localStorageKeys";
+import useGeolocation from "../../hooks/useGeolocation";
+import { LatLng } from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import useGeolocation from "../../hooks/useGeolocation";
-import { LOCAL_STORAGE_KEY_MAP_PERMISSION } from "../../LS/localStorageKeys";
+import { Button, Grid } from "@mui/material";
 import {
   createCustomClusterIcon,
   greenIcon,
@@ -15,7 +16,6 @@ import {
 import LocationMarker from "./LocationMarker";
 import { markers } from "./markers";
 import TransitionalDialog from "../../components/TransitionalDialog";
-import { LatLng } from "leaflet";
 
 const Map: React.FC = () => {
   const [requestedPermission, setRequestedPermission] = React.useState(false);
