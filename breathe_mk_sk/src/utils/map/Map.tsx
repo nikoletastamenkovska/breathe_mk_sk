@@ -16,11 +16,13 @@ import {
 import LocationMarker from "./LocationMarker";
 import { markers } from "./markers";
 import TransitionalDialog from "../../components/TransitionalDialog";
+import BreathingLoader from "../../components/loader/BreathingLoader";
 
 const Map: React.FC = () => {
   const [requestedPermission, setRequestedPermission] = React.useState(false);
   const [position, setPosition] = React.useState<LatLng | null>(null);
   const location = useGeolocation(requestedPermission);
+  const [loading, setLoading] = React.useState(true);
   const ZOOM_LEVEL = 13;
   const skopjeCenter: [number, number] = [41.9973, 21.428];
 
@@ -34,6 +36,14 @@ const Map: React.FC = () => {
   const handlePermissionRequest = () => {
     setRequestedPermission(true);
     localStorage.setItem(LOCAL_STORAGE_KEY_MAP_PERMISSION, "true");
+  };
+
+  const handleTileLoad = () => {
+    setLoading(false);
+  };
+
+  const handleTileLoadStart = () => {
+    setLoading(true);
   };
 
   return (
@@ -50,10 +60,15 @@ const Map: React.FC = () => {
               }
               zoom={ZOOM_LEVEL}
               scrollWheelZoom={true}
+              whenReady={() => setLoading(false)}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                eventHandlers={{
+                  load: handleTileLoad,
+                  loading: handleTileLoadStart,
+                }}
               />
               {location.loaded && !location.error ? (
                 <Marker
@@ -65,9 +80,7 @@ const Map: React.FC = () => {
                 >
                   <Popup>You are here</Popup>
                 </Marker>
-              ) : (
-                ""
-              )}
+              ) : null}
               <MarkerClusterGroup
                 chunkedLoading
                 iconCreateFunction={createCustomClusterIcon}
@@ -107,10 +120,15 @@ const Map: React.FC = () => {
                 center={skopjeCenter}
                 zoom={ZOOM_LEVEL}
                 scrollWheelZoom={true}
+                whenReady={() => setLoading(false)}
               >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  eventHandlers={{
+                    load: handleTileLoad,
+                    loading: handleTileLoadStart,
+                  }}
                 />
                 <LocationMarker
                   icon={questionMarkIcon}
@@ -129,6 +147,23 @@ const Map: React.FC = () => {
             </Grid>
           </Grid>
         </>
+      )}
+      {loading && (
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        >
+          <BreathingLoader />
+        </Grid>
       )}
     </>
   );

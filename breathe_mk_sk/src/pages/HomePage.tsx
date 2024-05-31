@@ -1,6 +1,7 @@
 import { Box, Grid } from "@mui/material";
-import React from "react";
-import Map from "../utils/map/Map";
+import React, { Suspense } from "react";
+import BreathingLoader from "../components/loader/BreathingLoader";
+const MapComponent = React.lazy(() => import("../utils/map/Map"));
 
 interface HomePageProps {}
 
@@ -13,7 +14,10 @@ const HomePage: React.FC<HomePageProps> = () => {
         p: 0,
       }}
     >
-      <Map />
+      {/* <Map /> */}
+      <Suspense fallback={<BreathingLoader />}>
+        <MapComponent />
+      </Suspense>
       <Grid
         container
         sx={{

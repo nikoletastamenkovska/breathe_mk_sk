@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeContextProvider>
-      <RouterProvider router={router} />
+      <RouterProvider router={router} fallbackElement={<BreathingLoader />} />
     </ThemeContextProvider>
   </React.StrictMode>
 );
