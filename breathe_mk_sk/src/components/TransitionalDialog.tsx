@@ -19,6 +19,7 @@ const Transition = React.forwardRef(function Transition(
 
 const TransitionalDialog: React.FC<TransitionalDialogProps> = ({
   position,
+  address,
 }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -63,6 +64,7 @@ const TransitionalDialog: React.FC<TransitionalDialogProps> = ({
           {"Дали е ова точната локација каде сакате да пријавите загадување?"}
         </DialogTitle>
         <DialogContent color="disabled">
+          {address}{" "}
           {position
             ? `${position.lat}, ${position.lng}`
             : "Немате изберена локација."}

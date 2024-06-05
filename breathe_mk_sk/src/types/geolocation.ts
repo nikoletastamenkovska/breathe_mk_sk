@@ -15,5 +15,6 @@ export interface LocationState {
 }
 
 export interface TransitionalDialogProps {
-    position: LatLng | null
+    position: LatLng | null;
+    address: string | null;
 }

@@ -8,6 +8,7 @@
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "leaflet": "^1.9.4",
+    "leaflet-control-geocoder": "^2.4.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "react": "^18.3.1",

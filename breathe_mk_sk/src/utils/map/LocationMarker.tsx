@@ -27,7 +27,7 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({
 
   return position ? (
     <Marker position={position} icon={icon}>
-      <Popup>`You chose this: ${position.toString()}`</Popup>
+      <Popup>Вие ја избравте оваа локација {position.toString()}</Popup>
     </Marker>
   ) : null;
 };

@@ -1,10 +1,14 @@
-import React from "react";
-import { LOCAL_STORAGE_KEY_MAP_PERMISSION } from "../../LS/localStorageKeys";
-import useGeolocation from "../../hooks/useGeolocation";
-import { LatLng } from "leaflet";
+import { Button, Grid } from "@mui/material";
+import L, { LatLng } from "leaflet";
+import "leaflet-control-geocoder";
+import React, { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import { Button, Grid } from "@mui/material";
+import { LOCAL_STORAGE_KEY_MAP_PERMISSION } from "../../LS/localStorageKeys";
+import TransitionalDialog from "../../components/TransitionalDialog";
+import BreathingLoader from "../../components/loader/BreathingLoader";
+import useGeolocation from "../../hooks/useGeolocation";
+import LocationMarker from "./LocationMarker";
 import {
   createCustomClusterIcon,
   greenIcon,
@@ -13,25 +17,37 @@ import {
   questionMarkIcon,
   redIcon,
 } from "./icons";
-import LocationMarker from "./LocationMarker";
 import { markers } from "./markers";
-import TransitionalDialog from "../../components/TransitionalDialog";
-import BreathingLoader from "../../components/loader/BreathingLoader";
 
 const Map: React.FC = () => {
-  const [requestedPermission, setRequestedPermission] = React.useState(false);
-  const [position, setPosition] = React.useState<LatLng | null>(null);
+  const [requestedPermission, setRequestedPermission] = useState(false);
+  const [position, setPosition] = useState<LatLng | null>(null);
+  const [address, setAddress] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
   const location = useGeolocation(requestedPermission);
-  const [loading, setLoading] = React.useState(true);
   const ZOOM_LEVEL = 13;
   const skopjeCenter: [number, number] = [41.9973, 21.428];
 
-  React.useEffect(() => {
+  useEffect(() => {
     const storedPermission = localStorage.getItem(
       LOCAL_STORAGE_KEY_MAP_PERMISSION
     );
     setRequestedPermission(storedPermission === "true");
   }, []);
+
+  React.useEffect(() => {
+    if (position) {
+      const geocoder = (L.Control as any).Geocoder.nominatim();
+      geocoder.reverse(position, 18, (results: any) => {
+        const r = results[0];
+        console.log(r);
+
+        if (r) {
+          setAddress(r.html || r.name);
+        }
+      });
+    }
+  }, [position]);
 
   const handlePermissionRequest = () => {
     setRequestedPermission(true);
@@ -108,7 +124,7 @@ const Map: React.FC = () => {
                 setPosition={setPosition}
               />
             </MapContainer>
-            <TransitionalDialog position={position} />
+            <TransitionalDialog position={position} address={address} />
           </Grid>
         </Grid>
       ) : (
@@ -143,7 +159,7 @@ const Map: React.FC = () => {
                   your location.
                 </Button>
               </MapContainer>
-              <TransitionalDialog position={position} />
+              <TransitionalDialog position={position} address={address} />
             </Grid>
           </Grid>
         </>
