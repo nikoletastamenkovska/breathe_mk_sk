@@ -7,6 +7,7 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import React from "react";
 import { TransitionalDialogProps } from "../types/geolocation";
+import { useNavigate } from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -21,6 +22,7 @@ const TransitionalDialog: React.FC<TransitionalDialogProps> = ({
   position,
   address,
 }) => {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -29,6 +31,12 @@ const TransitionalDialog: React.FC<TransitionalDialogProps> = ({
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleRedirect = () => {
+    navigate("/make-report", {
+      state: { address, position },
+    });
   };
 
   return (
@@ -71,7 +79,7 @@ const TransitionalDialog: React.FC<TransitionalDialogProps> = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>x</Button>
-          <Button onClick={handleClose}>Потврди</Button>
+          <Button onClick={handleRedirect}>Потврди</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

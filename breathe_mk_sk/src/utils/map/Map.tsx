@@ -20,15 +20,15 @@ import {
 import { markers } from "./markers";
 
 const Map: React.FC = () => {
-  const [requestedPermission, setRequestedPermission] = useState(false);
-  const [position, setPosition] = useState<LatLng | null>(null);
-  const [address, setAddress] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [requestedPermission, setRequestedPermission] = React.useState(false);
+  const [position, setPosition] = React.useState<LatLng | null>(null);
+  const [address, setAddress] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState(true);
   const location = useGeolocation(requestedPermission);
   const ZOOM_LEVEL = 13;
   const skopjeCenter: [number, number] = [41.9973, 21.428];
 
-  useEffect(() => {
+  React.useEffect(() => {
     const storedPermission = localStorage.getItem(
       LOCAL_STORAGE_KEY_MAP_PERMISSION
     );
@@ -43,7 +43,7 @@ const Map: React.FC = () => {
         console.log(r);
 
         if (r) {
-          setAddress(r.html || r.name);
+          setAddress(r.name);
         }
       });
     }

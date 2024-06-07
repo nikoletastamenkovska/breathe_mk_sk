@@ -5,6 +5,7 @@ import SearchPage from "../pages/SearchPage";
 import CompanyPage from "../pages/CompanyPage";
 import ErrorRoute from "./ErrorRoute";
 import NotFoundRoute from "./NotFound";
+import MakeReportPage from "../pages/MakeReportPage";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "company",
         element: <CompanyPage />,
+      },
+      {
+        path: "make-report",
+        element: <MakeReportPage />,
       },
 
       // {
