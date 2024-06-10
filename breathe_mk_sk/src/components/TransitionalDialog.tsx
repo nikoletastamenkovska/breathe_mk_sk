@@ -79,7 +79,7 @@ const TransitionalDialog: React.FC<TransitionalDialogProps> = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>x</Button>
-          <Button onClick={handleRedirect}>Потврди</Button>
+          {position ? <Button onClick={handleRedirect}>Потврди</Button> : null}
         </DialogActions>
       </Dialog>
     </React.Fragment>
