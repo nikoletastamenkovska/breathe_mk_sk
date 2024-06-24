@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import PollutantButtonList from "../components/PollutantButtonList";
 
 const MakeReportPage = () => {
   const location = useLocation();
@@ -23,64 +24,27 @@ const MakeReportPage = () => {
           <Typography variant="h4" component="h1" sx={{ textAlign: "center" }}>
             Пријави загадување
           </Typography>
-          <Typography
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "space-around",
-              padding: 3,
-            }}
-          >
-            <Button
-              size="large"
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                p: 2,
-                width: "33.33%",
-              }}
-            >
-              <img
-                src="/images/factory.png"
-                style={{ width: "75px", aspectRatio: 1, marginBottom: "20px" }}
-              ></img>
-              Фабрика
-            </Button>
-            <Button
-              size="large"
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                p: 2,
-                width: "33.33%",
-              }}
-            >
-              <img
-                src="/images/home_image.png"
-                style={{
-                  width: "75px",
-                  aspectRatio: 1,
-                  marginBottom: "20px",
-                }}
-              ></img>
-              Домакинство
-            </Button>
-            <Button
-              size="large"
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                p: 2,
-                width: "33.33%",
-              }}
-            >
-              <img
-                src="/images/air_polution.png"
-                style={{ width: "75px", aspectRatio: 1, marginBottom: "20px" }}
-              ></img>
-              Друго
-            </Button>
+          <Typography variant="h6" sx={{ py: 2 }}>
+            Избери извор на загадување
           </Typography>
+          <PollutantButtonList />
+        </Grid>
+      </Grid>
+      <Grid container sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid item xs={11}>
+          <hr />
+        </Grid>
+      </Grid>
+      <Grid container sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid item xs={11}>
+          <Typography variant="h6" sx={{ py: 2 }}>
+            Прикачи Фотографија
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid item xs={11}>
+          <hr />
         </Grid>
       </Grid>
     </Box>
