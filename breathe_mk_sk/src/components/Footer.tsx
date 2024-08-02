@@ -12,6 +12,10 @@ const Footer: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
         width: "100%",
         margin: 0,
         paddingBlock: 2,
@@ -35,7 +39,7 @@ const Footer: React.FC = () => {
             xs={6}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <Link to="/" className="icon-link">
+            <Link to="/sign-in" className="icon-link">
               <PersonOutlineOutlinedIcon
                 color="secondary"
                 fontSize="large"

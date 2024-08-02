@@ -1,23 +1,29 @@
-import * as React from "react";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import HomeIcon from "@mui/icons-material/Home";
-import { Divider, Grid, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import HomeIcon from "@mui/icons-material/Home";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import { Divider, Grid, useTheme } from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Fade from "@mui/material/Fade";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const TransitionalModal = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const HandleSignUp = () => {
+    setOpen(false);
+    navigate("/sign-up");
+  };
 
   return (
     <Box>
@@ -127,7 +133,9 @@ const TransitionalModal = () => {
                           paddingBlock: 2,
                         }}
                       >
-                        <Button variant="contained">Регистирај се</Button>
+                        <Button variant="contained" onClick={HandleSignUp}>
+                          Регистирај се
+                        </Button>
                       </Grid>
                       <Grid
                         item

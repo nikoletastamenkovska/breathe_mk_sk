@@ -44,8 +44,8 @@ const TransitionalDialog: React.FC<TransitionalDialogProps> = ({
       <Button
         variant="contained"
         sx={{
-          position: "absolute",
-          bottom: "25px",
+          position: "fixed",
+          bottom: "2%",
           left: "50%",
           transform: "translateX(-50%)",
           width: "65px",
@@ -56,6 +56,7 @@ const TransitionalDialog: React.FC<TransitionalDialogProps> = ({
           paddingLeft: "5px",
           textAlign: "center",
           fontWeight: "100",
+          zIndex: 9,
         }}
         onClick={handleClickOpen}
       >

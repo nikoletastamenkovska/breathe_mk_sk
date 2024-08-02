@@ -6,6 +6,8 @@ import CompanyPage from "../pages/CompanyPage";
 import ErrorRoute from "./ErrorRoute";
 import NotFoundRoute from "./NotFound";
 import MakeReportPage from "../pages/MakeReportPage";
+import SignInPage from "../pages/SignInPage";
+import SignUpPage from "../pages/SignUpPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
       {
         path: "make-report",
         element: <MakeReportPage />,
+      },
+      {
+        path: "sign-up",
+        element: <SignUpPage />,
+      },
+      {
+        path: "sign-in",
+        element: <SignInPage />,
       },
 
       // {
