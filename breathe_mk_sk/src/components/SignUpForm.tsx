@@ -136,7 +136,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
         }}
       />
       <Button type="submit" variant="contained" color="primary" fullWidth>
-        Register
+        Регистрирај се
       </Button>
     </Grid>
   );

@@ -22,7 +22,7 @@ const SignUpPage: React.FC = () => {
 
     setTimeout(() => {
       navigate("/sign-in");
-    }, 5000);
+    }, 2500);
   };
 
   const handleClose = () => {

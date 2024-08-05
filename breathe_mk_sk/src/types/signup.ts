@@ -8,6 +8,14 @@ export interface IFormInputs {
     confirmPassword: string;
 }
 
+export interface ILIFormInputs {
+    email: string;
+    password: string;
+}
+
 export interface SignUpFormProps {
     onSubmit: SubmitHandler<IFormInputs>;
+}
+export interface LogInFormProps {
+    onSubmit: SubmitHandler<ILIFormInputs>;
 }
