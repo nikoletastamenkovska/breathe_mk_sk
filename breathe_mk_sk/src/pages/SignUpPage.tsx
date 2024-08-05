@@ -1,19 +1,34 @@
 import React from "react";
-import { Box, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { SubmitHandler } from "react-hook-form";
 import SignUpForm from "../components/SignUpForm";
 import { IFormInputs } from "../types/signup";
-import { SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Alert, Box, Grid, Snackbar } from "@mui/material";
 
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
+
+  const [confirmationMessage, setConfirmationMessage] = React.useState<
+    string | null
+  >(null);
+
   const handleSignUpSubmit: SubmitHandler<IFormInputs> = (data) => {
-    // Store in ls
     localStorage.setItem("formData", JSON.stringify(data));
     console.log("Form data stored in local storage:", data);
-    // Redirect to the sign in page
-    navigate("/sign-in");
+
+    setConfirmationMessage(
+      "A confirmation email has been sent. Please check your email to complete the registration process."
+    );
+
+    setTimeout(() => {
+      navigate("/sign-in");
+    }, 5000);
   };
+
+  const handleClose = () => {
+    setConfirmationMessage(null);
+  };
+
   return (
     <Box
       sx={{
@@ -31,6 +46,21 @@ const SignUpPage: React.FC = () => {
         }}
       >
         <SignUpForm onSubmit={handleSignUpSubmit} />
+        {confirmationMessage && (
+          <Snackbar
+            open={true}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert
+              onClose={handleClose}
+              severity="success"
+              sx={{ width: "100%" }}
+            >
+              {confirmationMessage}
+            </Alert>
+          </Snackbar>
+        )}
       </Grid>
     </Box>
   );
