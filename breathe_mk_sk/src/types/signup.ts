@@ -1,7 +1,6 @@
 import { SubmitHandler } from "react-hook-form";
 
 export interface IFormInputs {
-    nameSurname: string;
     username: string;
     email: string;
     personal_no?: string | undefined;

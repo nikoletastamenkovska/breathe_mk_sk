@@ -6,20 +6,19 @@ import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const SignUpPage: React.FC = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const handleSignUpSubmit: SubmitHandler<IFormInputs> = (data) => {
     // Store in ls
     localStorage.setItem("formData", JSON.stringify(data));
     console.log("Form data stored in local storage:", data);
-    // Redirect to the profile page
-    // navigate("/the profile page")
+    // Redirect to the sign in page
+    navigate("/sign-in");
   };
   return (
     <Box
       sx={{
         width: "100%",
         margin: 0,
-        p: 2,
       }}
     >
       <Grid

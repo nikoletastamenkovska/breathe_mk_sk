@@ -1,7 +1,7 @@
-import { Box, Grid } from "@mui/material";
 import React from "react";
+import { Box, Grid } from "@mui/material";
 
-const SignInPage = () => {
+const SignInPage: React.FC = () => {
   return (
     <Box
       sx={{
@@ -11,7 +11,9 @@ const SignInPage = () => {
       }}
     >
       <Grid container sx={{ display: "flex", justifyContent: "center" }}>
-        <Grid item xs={11}></Grid>
+        <Grid item xs={11}>
+          Sign in page
+        </Grid>
       </Grid>
     </Box>
   );
